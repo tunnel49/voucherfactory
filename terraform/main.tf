@@ -1,9 +1,5 @@
 terraform {
-  backend "s3" {
-    bucket = "tfstate.tunnel49.net"
-    key    = "tunnel49/voucherfactory"
-    region = "eu-west-1"
-  }
+  backend "s3" { }
   required_providers {
     aws = {
       source = "hashicorp/aws"
@@ -14,8 +10,18 @@ terraform {
   required_version = ">=0.15.4"
 }
 
+variable "region" {
+  type = string
+}
+variable "tf_state_bucket" {
+  type = string
+}
+variable "tf_state_key" {
+  type = string
+}
+
 provider "aws" {
-  region = "eu-west-1"
+  region = var.region
 }
 
 data "aws_availability_zones" "available" {
