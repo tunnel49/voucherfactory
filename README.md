@@ -27,7 +27,8 @@ The lambdas themselves are written in Python.
 ### Running locally
 
 When running locally scripts expects a DynamoDB at port 8000.
-A docker-compose file to set up a database is in the `/dynamoDB` folder.
+A docker-compose file to set up a database is in the [/dynamoDB](dynamoDB) folder.
+Please review [/terraform/dynamodb.tf](terraform/dynamodb.tf) for required database setup.
 
 Local runs are done with a very specific set of parameters and don't accept any arguments.
 There are a few additional python scripts included to do some additional database tasks; however NoSQL Workbench is recommended https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html
@@ -41,7 +42,7 @@ There are three rest endpoints, they all accept json documents for their paramet
 - `VoucherFactory` registers a voucher  within a campaign for use {campaign: string, email: string}
 - `VoucherOverseer` tries to "redeem" a voucher, checking validity and marking the voucher as used. {voucherid: string}
 
-There are scripts including sample usage in [samples](samples)
+There are scripts including sample usage in [/sample](sample)
 Note that voucher ids are not returned by any of the scripts, only stored in the database and   will have to be retrieved from there.
 
-Endpoints are publicly available at [https://eqlq08fsp9.execute-api.eu-west-1.amazonaws.com/default/] there is currently no authentication for  practical reasons, however they are under strict limitations (max 5 requests per second). 
+Endpoints are publicly available at https://eqlq08fsp9.execute-api.eu-west-1.amazonaws.com/default/ there is currently no authentication for  practical reasons, however they are under strict limitations (max 5 requests per second). 
