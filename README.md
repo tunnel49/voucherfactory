@@ -2,6 +2,11 @@
 
 ## Description
 
+## Business Case
+
+1. Slides are available in [slides/README.md](slides/README.md)
+2. Slides can be compiled to pdf with `make slides` from  the slides directory
+
 ## Getting Started
 
 ### Build and Install
@@ -21,6 +26,5 @@ A docker-compose file to set up a database is in the `/dynamoDB` folder.
 Local runs are done with a very specific set of parameters and don't accept any arguments.
 There are a few additional python scripts included to do some additional database tasks; however NoSQL Workbench is recommended https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html
 
+### Access API using curl
 
-### Access API using aws
-aws lambda invoke --region=us-east-1 --function-name=ServerlessExample output.txt
