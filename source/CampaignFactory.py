@@ -34,7 +34,6 @@ def campaignfactory(campaign, vouchers, validity, dynamodb=None):
                                   region_name="eu-west-1",
                                   endpoint_url="http://localhost:8000")
     register_campaign(campaign, vouchers, validity, dynamodb)
-#    create_campaign_table(campaign, dynamodb)
 
 def register_campaign(campaign, vouchers, validity, dynamodb):
     epoch = int(time())
@@ -61,36 +60,6 @@ def register_campaign(campaign, vouchers, validity, dynamodb):
     except:
         raise 
     return response
-
-
-def create_campaign_table(campaign, dynamodb):
-    if not dynamodb:
-        dynamodb = boto3.resource('dynamodb', 
-                                  aws_access_key_id="anything",
-                                  aws_secret_access_key="anything",
-                                  region_name="eu-west-1",
-                                  endpoint_url="http://localhost:8000")
-
-    table = dynamodb.create_table(
-        TableName=campaign,
-        KeySchema=[
-            {
-                'AttributeName': 'Voucher',
-                'KeyType': 'HASH'
-            }
-        ],
-        AttributeDefinitions=[
-            {
-                'AttributeName': 'Voucher',
-                'AttributeType': 'N'
-            },
-        ],
-        ProvisionedThroughput={
-            'ReadCapacityUnits': 10,
-            'WriteCapacityUnits': 10
-        }
-    )
-    return table
 
 if __name__ == '__main__':
     response = campaignfactory("TestCampaign",10,600)

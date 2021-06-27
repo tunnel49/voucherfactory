@@ -41,9 +41,6 @@ def voucheroverseer(voucher, dynamodb=None):
                                   endpoint_url="http://localhost:8000")
     epoch = int(time())
     data = base64.b64decode(voucher)
-    print(voucher)
-    print(data)
-    print(len(data))
     if struct.unpack('>III', data)[0] < epoch:
         raise VoucherExpiredError('400: Voucher has expired')
     return retrieve_voucher(voucher, dynamodb)

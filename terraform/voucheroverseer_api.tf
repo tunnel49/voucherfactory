@@ -53,7 +53,7 @@ resource "aws_api_gateway_integration_response" "voucheroverseer_post_integratio
 }
 EOF
   }
-  selection_pattern = "Error:.*"
+  selection_pattern = "400:.*"
  
   rest_api_id = aws_api_gateway_rest_api.voucherfactory_api.id
   resource_id = aws_api_gateway_resource.voucheroverseer.id

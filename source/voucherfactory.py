@@ -70,9 +70,6 @@ def claim_voucher(campaign, dynamodb):
 # The resulting voucher should be of length 16, this is not a secure algorithm
 def generate_voucherid(campaignid, expiration):
     data = struct.pack('>III', expiration, campaignid, secrets.randbits(32))
-    print(data)
-    print(len(data))
-    print(base64.b64encode( data ))
     return base64.b64encode( data )
 
 def register_voucher(campaign, campaignid, email, expiration, dynamodb):

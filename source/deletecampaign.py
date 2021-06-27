@@ -30,7 +30,6 @@ def delete_campaign(campaign, dynamodb=None):
                                   region_name="eu-west-1",
                                   endpoint_url="http://localhost:8000")
     remove_campaign(campaign, dynamodb)
-    delete_campaign_table(campaign, dynamodb)
 
 def remove_campaign(campaign, dynamodb):
     table = dynamodb.Table('Campaigns')
@@ -40,17 +39,6 @@ def remove_campaign(campaign, dynamodb):
         },
     )
     return response
-
-
-def delete_campaign_table(campaign, dynamodb):
-    if not dynamodb:
-        dynamodb = boto3.resource('dynamodb', 
-                                  aws_access_key_id="anything",
-                                  aws_secret_access_key="anything",
-                                  region_name="eu-west-1",
-                                  endpoint_url="http://localhost:8000")
-    table = dynamodb.Table(campaign)
-    table.delete()
 
 if __name__ == '__main__':
     response = delete_campaign("TestCampaign",10,600)
