@@ -9,6 +9,12 @@
 
 ## Getting Started
 
+The system as a whole is set up using purely Amazon FaaS service offerings:
+- Lambda
+- Api Gateway
+- Dynamo DB
+The lambdas themselves are written in Python.
+
 ### Build and Install
 
 1. Set up an S3 bucket for terraform state
@@ -28,7 +34,7 @@ There are a few additional python scripts included to do some additional databas
 
 ### API access
 
-## Rest enddpoints
+## Rest endpoints
 
 There are three rest endpoints, they all accept json documents for their parameters, they are however not to the JSon:API specification; this should ammended before reaching "production". All fields in the API are mandatory.
 - `CampaignFactory` is used to add Campaigns {campaign: string, vouchers: int, validity: int } 
