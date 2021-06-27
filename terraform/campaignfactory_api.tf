@@ -6,9 +6,11 @@ resource "aws_api_gateway_method" "campaignfactory_post"{
   resource_id = aws_api_gateway_resource.campaignfactory.id
 }
 
+
 resource "aws_api_gateway_integration" "campaignfactory_post_integration"{
   type = "AWS"
   uri = aws_lambda_function.campaignfactory_lambda.invoke_arn
+  integration_http_method = "POST"
   
   rest_api_id = aws_api_gateway_rest_api.voucherfactory_api.id
   resource_id = aws_api_gateway_resource.campaignfactory.id
@@ -57,5 +59,8 @@ EOF
   resource_id = aws_api_gateway_resource.campaignfactory.id
   http_method = aws_api_gateway_method.campaignfactory_post.http_method
   status_code = aws_api_gateway_method_response.campaignfactory_post_response_400.status_code
+  depends_on = [
+    aws_api_gateway_integration.campaignfactory_post_integration
+  ]
 }
 
